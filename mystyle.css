@@ -1,0 +1,17 @@
+table{
+	margin: auto; 
+}
+td {
+	height: 100px;
+	width: 100px;
+}
+#box1, #box2, #box4, #box5, #box7, #box8 {
+	border-right: 2px dashed grey;
+}
+#box1, #box2, #box3, #box4, #box5, #box6{
+	border-bottom: 2px dashed grey;
+}
+
+img {
+	position: center;
+}
