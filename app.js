@@ -24,11 +24,37 @@ function nextItem() {
 }else {
 	letter = "X";
 }
+}
+
+// function check() {
+// 	if (x )
+// 		1,2,3
+// 		4,5,6
+// 		7,8,9
+// 		1,4,7
+// 		2,5,8
+// 		3,6,9
+// 		1,5,9
+// 		3,5,7
+
+// }
+var resetButtonHandler = function() { 
+var gameBoxes = document.querySelectorAll("td");
+for (var i = 0; i < gameBoxes.length; i++) {
+	if (gameBoxes[i].innerText !== "") {
+		gameBoxes[i].innerText = "";
+	}
+
+}
 };
+
+
 
 
 var initaliaze = function(){
 	styleBoxElements();
+	document.querySelector("#reset").addEventListener("click",resetButtonHandler);
+
 };
 
 window.onload = initaliaze;
