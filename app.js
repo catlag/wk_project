@@ -1,6 +1,6 @@
 
 var letter= "X";
-var winner = document.querySelectorAll("h2");
+
 
 // Goes thru all the td's and adds an event listener
 var styleBoxElements = function(){
@@ -47,8 +47,9 @@ var gameBoxes = document.querySelectorAll("td");
 for (var i = 0; i < gameBoxes.length; i++) {
 	if (gameBoxes[i].innerText !== "") {
 		gameBoxes[i].innerText = "";
-		letter = "X"
+		letter = "X";
 		playerTurn();
+		document.getElementById("p1").innerHTML = "X Starts First!";
 	}
 
 }
@@ -62,10 +63,6 @@ var initaliaze = function(){
 
 window.onload = initaliaze;
 
-var playerX = {};
-var playerO =[];
-var winCombo = [b1,b2,b3];
-var winCounter = [];
 
 // Checks for winner!!!!!!!!!
 
@@ -92,8 +89,8 @@ var winCounter = [];
   	val2.innerHTML === "X" && val5.innerHTML === "X" && val8.innerHTML === "X"  ||
 	val0.innerHTML === "X" && val4.innerHTML === "X" && val8.innerHTML === "X"  ||
 	val2.innerHTML === "X" && val4.innerHTML === "X" && val6.innerHTML === "X" ){
-  	winner.innerHTML = "X Wins!";
-  	console.log("X wins")
+  	document.getElementById("p1").innerHTML = "X wins! Start a new game!";
+  	console.log("X wins");
   	} else if (val0.innerHTML === "O" && val1.innerHTML === "O" && val2.innerHTML === "O" || 
   	val3.innerHTML === "O" && val4.innerHTML === "O" && val5.innerHTML === "O"  ||
   	val6.innerHTML === "O" && val7.innerHTML === "O" && val8.innerHTML === "O"  ||
@@ -102,7 +99,7 @@ var winCounter = [];
   	val2.innerHTML === "O" && val5.innerHTML === "O" && val8.innerHTML === "O"  ||
 	val0.innerHTML === "O" && val4.innerHTML === "O" && val8.innerHTML === "O"  ||
 	val2.innerHTML === "O" && val4.innerHTML === "O" && val6.innerHTML === "O" ) {
-  		winner.innerHTML = "O Wins!";
+  	document.getElementById("p1").innerHTML = "O wins! Start a new game!";
   			console.log("O wins");
 	}
 };
