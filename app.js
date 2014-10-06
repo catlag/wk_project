@@ -1,5 +1,6 @@
 
 var letter= "X";
+var winner = document.querySelectorAll("h2");
 
 // Goes thru all the td's and adds an event listener
 var styleBoxElements = function(){
@@ -17,16 +18,8 @@ var selectItem = function(){
 	console.log("Clicked item:"+this.id + event);
 	if (this.innerText === ""){
 	this.innerText = letter;
-
+	checkWin();
 	nextItem();
-	}
-
-	if (this.innerText ==="O"){
-		playerO.push(this.id);
-		checkWin();
-	}
-	else if (this.innerText ==="X") {
-		playerX.push(this.id);
 	}
 };
 
@@ -36,9 +29,11 @@ function nextItem() {
 	if (letter === "X") {
 		letter = "O";
 		playerTurn();
+		checkWin();
 	}else {
 	letter = "X";
 	playerTurn();
+	checkWin();
 	}
 }
 
@@ -52,6 +47,8 @@ var gameBoxes = document.querySelectorAll("td");
 for (var i = 0; i < gameBoxes.length; i++) {
 	if (gameBoxes[i].innerText !== "") {
 		gameBoxes[i].innerText = "";
+		letter = "X"
+		playerTurn();
 	}
 
 }
@@ -59,120 +56,54 @@ for (var i = 0; i < gameBoxes.length; i++) {
 
 var initaliaze = function(){
 	styleBoxElements();
-	
-
 	document.querySelector("#reset").addEventListener("click",resetButtonHandler);
 
 };
 
 window.onload = initaliaze;
 
-var playerX = [];
+var playerX = {};
 var playerO =[];
-var winCombo = ["b1","b2","b3"];
+var winCombo = [b1,b2,b3];
+var winCounter = [];
 
 // Checks for winner!!!!!!!!!
 
- 
 
- var checkWin = function() {
- 	for (i=0; i <playerO.length; i++){
- 		for( j=0; j<winCombo.length; j++){
- 			if (playerO[i].equals winCombo[j]) {
- 				console.log("you win");
- 			}
- 		}
- 	}
+
+
+  var val0 = document.getElementById("b1");
+  var val1 = document.getElementById("b2");
+  var val2 = document.getElementById("b3");
+  var val3 = document.getElementById("b4");
+  var val4 = document.getElementById("b5");
+  var val5 = document.getElementById("b6");
+  var val6 = document.getElementById("b7");
+  var val7 = document.getElementById("b8");
+  var val8 = document.getElementById("b9");
+  
+
+  var checkWin = function(){
+  if(val0.innerHTML === "X" && val1.innerHTML === "X" && val2.innerHTML === "X" || 
+  	val3.innerHTML === "X" && val4.innerHTML === "X" && val5.innerHTML === "X"  ||
+  	val6.innerHTML === "X" && val7.innerHTML === "X" && val8.innerHTML === "X"  ||
+  	val0.innerHTML === "X" && val3.innerHTML === "X" && val6.innerHTML === "X" || 
+  	val1.innerHTML === "X" && val4.innerHTML === "X" && val7.innerHTML === "X"  ||
+  	val2.innerHTML === "X" && val5.innerHTML === "X" && val8.innerHTML === "X"  ||
+	val0.innerHTML === "X" && val4.innerHTML === "X" && val8.innerHTML === "X"  ||
+	val2.innerHTML === "X" && val4.innerHTML === "X" && val6.innerHTML === "X" ){
+  	winner.innerHTML = "X Wins!";
+  	console.log("X wins")
+  	} else if (val0.innerHTML === "O" && val1.innerHTML === "O" && val2.innerHTML === "O" || 
+  	val3.innerHTML === "O" && val4.innerHTML === "O" && val5.innerHTML === "O"  ||
+  	val6.innerHTML === "O" && val7.innerHTML === "O" && val8.innerHTML === "O"  ||
+  	val0.innerHTML === "O" && val3.innerHTML === "O" && val6.innerHTML === "O" || 
+  	val1.innerHTML === "O" && val4.innerHTML === "O" && val7.innerHTML === "O"  ||
+  	val2.innerHTML === "O" && val5.innerHTML === "O" && val8.innerHTML === "O"  ||
+	val0.innerHTML === "O" && val4.innerHTML === "O" && val8.innerHTML === "O"  ||
+	val2.innerHTML === "O" && val4.innerHTML === "O" && val6.innerHTML === "O" ) {
+  		winner.innerHTML = "O Wins!";
+  			console.log("O wins");
+	}
 };
-
-// var checkWin  = function () {
-// 	var gameBoxes = document.querySelectorAll("td");
-
-// };
-// // 
-// // Game.prototype.checkWin = function(){
-// //         //checks to see if the program (X) has won.
-// //         //there are 8 possible ways to victory
-		
-// //         //checks rows first
-// //         if(takenBy[0] == 'X' && takenBy[1] == 'X' && takenBy[2] == 'X'){
-// //             return "X";
-// //         }
-// //         else if (takenBy[3] == 'X' && takenBy[4] == 'X' && takenBy[5] == 'X'){
-// //             return "X";
-// //         }
-// //         else if (takenBy[6] == 'X' && takenBy[7] == 'X' && takenBy[8] == 'X'){
-// //             return "X";
-// //         }
-    
-// //         //check cols second
-// //         if(takenBy[0] == 'X' && takenBy[3] == 'X' && takenBy[6] == 'X'){
-// //             return "X";
-// //         }
-// //         else if (takenBy[1] == 'X' && takenBy[4] == 'X' && takenBy[7] == 'X'){
-// //             return "X";
-// //         }
-// //         else if (takenBy[2] == 'X' && takenBy[5] == 'X' && takenBy[8] == 'X'){
-// //             return "X";
-// //         }
-    
-// //         //checks diagonals third
-// //         if(takenBy[0] == 'X' && takenBy[4] == 'X' && takenBy[8] == 'X'){
-// //             return "X";
-// //         }
-// //         else if (takenBy[2] == 'X' && takenBy[4] == 'X' && takenBy[6] == 'X'){
-// //             return "X";
-// //         }
-     
-// //         //this checks to see if the User, or O has won
-// //         if(takenBy[0] == 'O' && takenBy[1] == 'O' && takenBy[2] == 'O'){
-// //             return "O";
-// //         }
-// //         else if (takenBy[3] == 'O' && takenBy[4] == 'O' && takenBy[5] == 'O'){
-// //             return "O";
-// //         }
-// //         else if (takenBy[6] == 'O' && takenBy[7] == 'O' && takenBy[8] == 'O'){
-// //             return "O";
-// //         }
-    
-// //         //check cols second
-// //         if(takenBy[0] == 'O' && takenBy[3] == 'O' && takenBy[6] == 'O'){
-// //             return "O";
-// //         }
-// //         else if (takenBy[1] == 'O' && takenBy[4] == 'O' && takenBy[7] == 'O'){
-// //             return "O";
-// //         }
-// //         else if (takenBy[2] == 'O' && takenBy[5] == 'O' && takenBy[8] == 'O'){
-// //             return "O";
-// //         }
-    
-// //         //checks diagonals third
-// //         if(takenBy[0] == 'O' && takenBy[4] == 'O' && takenBy[8] == 'O'){
-// //             return "O";
-// //         }
-// //         else if (takenBy[2] == 'O' && takenBy[4] == 'O' && takenBy[6] == 'O'){
-// //             return "O";
-// //         }
-    
-// //         var isATie = true;
-// //         // checks to see if it is a tie
-// //         for(var i = 0; i < spacesTaken.length; i++){
-// //             if(spacesTaken[i] === false){
-// //                 isATie = false;
-// //             }
-// //         }
-// //         if(isATie){
-// //             return "tie";
-// //         }
-    
-// //         //If it is not a tie, and neither person has won, it returns "neither"
-// //         return "neither";
-// //     };
-
-
-
-
-
-
-
-
+ 
